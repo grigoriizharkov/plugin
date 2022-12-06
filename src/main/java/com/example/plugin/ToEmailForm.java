@@ -10,9 +10,11 @@ import javax.swing.*;
 
 public class ToEmailForm extends JFrame {
     private JPanel emailForm;
-    private JLabel message;
+    private JLabel emailMessage;
     private JTextField email;
     private JButton okButton;
+    private JTextField subject;
+    private JLabel subjectMessage;
     private final String messageBody;
     private final AnActionEvent e;
 
@@ -28,7 +30,7 @@ public class ToEmailForm extends JFrame {
 
         okButton.addActionListener(actionEvent -> {
             setVisible(false);
-            Email.composeEmail(email.getText(), messageBody);
+            Email.composeEmail(email.getText(), messageBody, subject.getText());
             NotificationGroup ng = NotificationGroup.findRegisteredGroup("PerformancePlugin");
             Notifications.Bus.notify(new Notification(String.valueOf(ng),
                     String.format("Message was sent to %s", email.getText()),
