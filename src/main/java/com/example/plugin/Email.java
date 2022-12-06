@@ -47,7 +47,7 @@ public class Email {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, StandardCharsets.UTF_8);
     }
-    public static void composeEmail(String toEmail, String messageBody) {
+    public static void composeEmail(String toEmail, String messageBody, String messageSubject) {
         System.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
 
         final String fromEmail = "grigoriial54@gmail.com";
@@ -77,7 +77,7 @@ public class Email {
         };
         Session session = Session.getInstance(props, auth);
 
-        sendEmail(session, toEmail,"JAVA", messageBody);
+        sendEmail(session, toEmail,messageSubject, messageBody);
 
     }
 
