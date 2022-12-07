@@ -7,13 +7,11 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.ui.Messages;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class MailAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         Editor editor = e.getData(PlatformDataKeys.EDITOR);
-        String selectedText = Objects.requireNonNull(editor).getSelectionModel().getSelectedText();
+        String selectedText = editor.getSelectionModel().getSelectedText();
 
         if (selectedText != null) {
             ToEmailForm form = new ToEmailForm(selectedText, e);
